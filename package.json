@@ -1,0 +1,28 @@
+{
+  "name": "reavt-native-snackbar",
+  "version": "1.0.0",
+  "description": "A snackbar component for Android and iOS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiDevesh/React-Native-SnackBar.git"
+  },
+  "keywords": [
+    "snackbar",
+    "material",
+    "design",
+    "android",
+    "ios",
+    "notifications",
+    "react-native"
+  ],
+  "author": "SiDevesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SiDevesh/React-Native-SnackBar/issues"
+  },
+  "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme"
+}
