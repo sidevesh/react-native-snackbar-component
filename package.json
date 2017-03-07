@@ -1,5 +1,5 @@
 {
-  "name": "reavt-native-snackbar",
+  "name": "react-native-snackbar",
   "version": "1.0.0",
   "description": "A snackbar component for Android and iOS",
   "main": "index.js",
