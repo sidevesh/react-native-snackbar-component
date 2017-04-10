@@ -56,7 +56,12 @@ class SnackbarComponent extends Component {
   }
 
   componentDidMount() {
-    this.state.translateValue.setValue(0);
+    if(this.props.visible) {
+      this.state.translateValue.setValue(1);
+    }
+    else {
+      this.state.translateValue.setValue(0);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
