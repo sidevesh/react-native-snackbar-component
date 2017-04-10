@@ -1,6 +1,6 @@
 {
   "name": "react-native-snackbar-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A snackbar component for Android and iOS",
   "main": "index.js",
   "scripts": {
