@@ -20,7 +20,7 @@ import SnackBar from 'react-native-snackbar-component'
 ## Code
 
 ```js
-<Snackbar visible={true} textMessage="Hello There!" actionHandler={()=>{console.log("snackbar button clicked!")}} actionText="let's go"/>
+<SnackBar visible={true} textMessage="Hello There!" actionHandler={()=>{console.log("snackbar button clicked!")}} actionText="let's go"/>
 ```
 ## Options
 | Prop        | Type           | Effect  | Default Value |
