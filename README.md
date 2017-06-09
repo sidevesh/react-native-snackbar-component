@@ -2,6 +2,7 @@
 A snackbar component for Android and iOS, customizable and simple.
 
 ![Snackbar demo](https://media.giphy.com/media/zChTSWog7TNmM/giphy.gif)
+![With fab](https://media.giphy.com/media/6oCCk98unakbC/giphy.gif)
 
 See [Google Material Design](https://material.io/guidelines/components/snackbars-toasts.html) for more info on Snackbars.
 
