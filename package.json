@@ -4,7 +4,8 @@
   "description": "A snackbar component for Android and iOS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint --fix ./index.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,17 @@
   "bugs": {
     "url": "https://github.com/SiDevesh/React-Native-SnackBar/issues"
   },
-  "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme"
+  "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.3.1",
+    "react-native": "*"
+  }
 }

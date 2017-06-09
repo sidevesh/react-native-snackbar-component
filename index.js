@@ -1,18 +1,14 @@
-'use strict';
-
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  Platform,
   Animated,
   Easing
 } from 'react-native';
-
+import { Touchable } from './src';
+import { noop } from './src/utils';
 /*
 * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
 */
@@ -39,17 +35,23 @@ class SnackbarComponent extends Component {
 
   render() {
     return (
-      <Animated.View style={[styles.container, {backgroundColor: this.props.backgroundColor, bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})}]}  onLayout={(event) => {this.setState({hideDistance: event.nativeEvent.layout.height});}}>
+      <Animated.View
+        style={[
+          styles.container,
+          {
+            backgroundColor: this.props.backgroundColor,
+            bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})
+          }
+        ]}
+        onLayout={(event) => {
+          this.setState({hideDistance: event.nativeEvent.layout.height});
+        }}
+      >
         <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
-        {this.props.actionHandler && this.props.actionText && Platform.OS==='android' &&
-          <TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} onPress={() => {this.props.actionHandler()}} >
+        {this.props.actionHandler && this.props.actionText &&
+          <Touchable onPress={() => {this.props.actionHandler()}} >
             <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
-          </TouchableNativeFeedback>
-        }
-        {this.props.actionHandler && this.props.actionText && Platform.OS==='ios' &&
-          <TouchableOpacity onPress={() => {this.props.actionHandler()}} >
-            <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
-          </TouchableOpacity>
+          </Touchable>
         }
       </Animated.View>
     );
@@ -87,12 +89,31 @@ class SnackbarComponent extends Component {
     }
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if((nextProps.visible!==this.props.visible)||(nextState.hideDistance!==this.state.hideDistance)) {
+      if(nextProps.visible) {
+        this.props.distanceCallback(nextState.hideDistance);
+      }
+      else {
+        this.props.distanceCallback(0);
+      }
+    }
+  }
+
 }
 
 SnackbarComponent.defaultProps = {
   accentColor:"orange",
   messageColor:"#FFFFFF",
-  backgroundColor:"#484848"
+  backgroundColor:"#484848",
+  distanceCallback: noop
+};
+
+SnackbarComponent.propTypes = {
+  accentColor: PropTypes.string,
+  messageColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  distanceCallback: PropTypes.func
 };
 
 const styles = StyleSheet.create({

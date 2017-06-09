@@ -32,6 +32,7 @@ import SnackBar from 'react-native-snackbar-component'
 | backgroundColor | color | The background color of snackbar | #484848 |
 | accentColor | color | The color of action button text | orange |
 | messageColor | color | The color of main message text | #FFFFFF |
+| distanceCallback | function | Function to be caled whenever snackbar moves in and out or changes layout, the function will be supplied a number indicating distance taken up by snackbar on bottom. | (distance) => {} |
 
 ##Note
 
