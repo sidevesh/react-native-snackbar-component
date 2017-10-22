@@ -35,6 +35,7 @@ import SnackBar from 'react-native-snackbar-component'
 | messageColor | color | The color of main message text | #FFFFFF |
 | distanceCallback | function | Function to be caled whenever snackbar moves in and out or changes layout, the function will be supplied a number indicating distance taken up by snackbar on bottom. | (distance) => {} |
 | bottom | number | The starting bottom position of snackbar | 0 |
+| position | string | The position of the snackbar: top, bottom | bottom |
 
 ## Note
 

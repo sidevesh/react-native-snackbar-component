@@ -39,18 +39,19 @@ class SnackbarComponent extends Component {
       <Animated.View style={[
           styles.limit_container,
           {
-            bottom: this.props.bottom,
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
             backgroundColor: 'teal'
-          }
+          },
+          this.props.position==="bottom"?{bottom: this.props.bottom}:{top: this.props.bottom},
         ]}>
         <Animated.View
           style={[
             styles.container,
             {
               backgroundColor: this.props.backgroundColor,
-              bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})
-            }
+            },
+            this.props.position==="bottom"?{bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})}:
+              {top: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1,0]})},
           ]}
           onLayout={(event) => {
             this.setState({hideDistance: event.nativeEvent.layout.height});
@@ -117,7 +118,8 @@ SnackbarComponent.defaultProps = {
   messageColor:"#FFFFFF",
   backgroundColor:"#484848",
   distanceCallback: noop,
-  bottom: 0
+  bottom: 0,
+  position: "bottom",
 };
 
 SnackbarComponent.propTypes = {
@@ -125,23 +127,23 @@ SnackbarComponent.propTypes = {
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   distanceCallback: PropTypes.func,
-  bottom: PropTypes.number
+  bottom: PropTypes.number,
+  position: PropTypes.string, // bottom (default), top
 };
 
 const styles = StyleSheet.create({
   limit_container: {
     position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    zIndex: 9999,
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
     paddingLeft: 24,
