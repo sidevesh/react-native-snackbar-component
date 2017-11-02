@@ -148,16 +148,18 @@ const styles = StyleSheet.create({
     right: 0,
     paddingLeft: 24,
     paddingRight: 24,
-    paddingTop: 14,
-    paddingBottom: 14
   },
   text_msg: {
     fontSize: 14,
-    flex: 1
+    flex: 1,
+    paddingTop: 14,
+    paddingBottom: 14
   },
   action_text: {
     fontSize: 14,
-    fontWeight: '600'
+    fontWeight: '600',
+    paddingTop: 14,
+    paddingBottom: 14
   }
 });
 
