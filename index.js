@@ -146,18 +146,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    paddingLeft: 24,
-    paddingRight: 24,
   },
   text_msg: {
     fontSize: 14,
     flex: 1,
+    paddingLeft: 24,    
     paddingTop: 14,
     paddingBottom: 14
   },
   action_text: {
     fontSize: 14,
     fontWeight: '600',
+    paddingRight: 24,
     paddingTop: 14,
     paddingBottom: 14
   }
