@@ -150,14 +150,14 @@ const styles = StyleSheet.create({
   text_msg: {
     fontSize: 14,
     flex: 1,
-    paddingLeft: 24,    
+    paddingLeft: 20,    
     paddingTop: 14,
     paddingBottom: 14
   },
   action_text: {
     fontSize: 14,
     fontWeight: '600',
-    paddingRight: 24,
+    paddingRight: 20,
     paddingTop: 14,
     paddingBottom: 14
   }
