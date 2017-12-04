@@ -39,6 +39,8 @@ class SnackbarComponent extends Component {
       <Animated.View style={[
           styles.limit_container,
           {
+            left: this.props.left,
+            right: this.props.right,
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
             backgroundColor: 'teal'
           },
@@ -118,6 +120,8 @@ SnackbarComponent.defaultProps = {
   messageColor:"#FFFFFF",
   backgroundColor:"#484848",
   distanceCallback: noop,
+  left: 0,
+  right: 0,
   bottom: 0,
   position: "bottom",
 };
@@ -127,6 +131,8 @@ SnackbarComponent.propTypes = {
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   distanceCallback: PropTypes.func,
+  left: PropTypes.number,
+  right: PropTypes.number,
   bottom: PropTypes.number,
   position: PropTypes.string, // bottom (default), top
 };
@@ -134,8 +140,6 @@ SnackbarComponent.propTypes = {
 const styles = StyleSheet.create({
   limit_container: {
     position: 'absolute',
-    left: 0,
-    right: 0,
     overflow: 'hidden',
     zIndex: 9999,
   },
