@@ -40,7 +40,7 @@ class SnackbarComponent extends Component {
           styles.limit_container,
           {
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
-            backgroundColor: 'teal'
+            backgroundColor: this.props.backgroundColor,
           },
           this.props.position==="bottom"?{bottom: this.props.bottom}:{top: this.props.bottom},
         ]}>
