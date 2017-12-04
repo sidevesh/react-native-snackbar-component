@@ -39,8 +39,6 @@ class SnackbarComponent extends Component {
       <Animated.View style={[
           styles.limit_container,
           {
-            left: this.props.left,
-            right: this.props.right,
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
             backgroundColor: 'teal'
           },
@@ -51,6 +49,8 @@ class SnackbarComponent extends Component {
             styles.container,
             {
               backgroundColor: this.props.backgroundColor,
+              left: this.props.left,
+              right: this.props.right,  
             },
             this.props.position==="bottom"?{bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})}:
               {top: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1,0]})},
@@ -141,15 +141,15 @@ const styles = StyleSheet.create({
   limit_container: {
     position: 'absolute',
     overflow: 'hidden',
+    left: 0,
+    right: 0,
     zIndex: 9999,
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    position: 'absolute',
-    left: 0,
-    right: 0,
+    position: 'absolute'
   },
   text_msg: {
     fontSize: 14,
