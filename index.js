@@ -57,7 +57,14 @@ class SnackbarComponent extends Component {
             this.setState({hideDistance: event.nativeEvent.layout.height});
           }}
         >
-          <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
+          <View style={styles.text_msg_wrapper}>
+            { this.props.imageUrl &&
+            <Image
+              style={styles.image_style}
+              source={{ uri: this.props.imageUrl }}
+            /> }
+            <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
+          </View>
           {this.props.actionHandler && this.props.actionText &&
             <Touchable onPress={() => {this.props.actionHandler()}} >
               <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
@@ -129,6 +136,7 @@ SnackbarComponent.propTypes = {
   distanceCallback: PropTypes.func,
   bottom: PropTypes.number,
   position: PropTypes.string, // bottom (default), top
+  imageUrl: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -146,14 +154,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    paddingLeft: 24,
-    paddingRight: 24,
-    paddingTop: 14,
-    paddingBottom: 14
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingTop: 16,
+    paddingBottom: 16
+  },
+  text_msg_wrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   },
   text_msg: {
     fontSize: 14,
-    flex: 1
+  },
+  image_style: {
+    height: 20,
+    width: 20,
+    marginRight: 8
   },
   action_text: {
     fontSize: 14,
