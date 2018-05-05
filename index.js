@@ -58,7 +58,7 @@ class SnackbarComponent extends Component {
           }}
         >
           <View style={styles.text_msg_wrapper}>
-            { this.props.imageUrl &&
+            { !!this.props.imageUrl &&
             <Image
               style={styles.image_style}
               source={{ uri: this.props.imageUrl }}
