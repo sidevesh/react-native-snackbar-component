@@ -40,7 +40,7 @@ class SnackbarComponent extends Component {
           styles.limit_container,
           {
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
-            backgroundColor: 'teal'
+            backgroundColor: this.props.containerBackgroundColor
           },
           this.props.position==="bottom"?{bottom: this.props.bottom}:{top: this.props.bottom},
         ]}>
@@ -117,6 +117,7 @@ SnackbarComponent.defaultProps = {
   accentColor:"orange",
   messageColor:"#FFFFFF",
   backgroundColor:"#484848",
+  containerBackgroundColor: "teal",
   distanceCallback: noop,
   bottom: 0,
   position: "bottom",
@@ -126,6 +127,7 @@ SnackbarComponent.propTypes = {
   accentColor: PropTypes.string,
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
+  
   distanceCallback: PropTypes.func,
   bottom: PropTypes.number,
   position: PropTypes.string, // bottom (default), top
