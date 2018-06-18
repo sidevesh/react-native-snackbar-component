@@ -40,7 +40,7 @@ class SnackbarComponent extends Component {
           styles.limit_container,
           {
             height: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [0, this.state.hideDistance]}),
-            backgroundColor: 'teal'
+            backgroundColor: this.props.backgroundColor,
           },
           this.props.position==="bottom"?{bottom: this.props.bottom}:{top: this.props.bottom},
         ]}>
@@ -49,6 +49,8 @@ class SnackbarComponent extends Component {
             styles.container,
             {
               backgroundColor: this.props.backgroundColor,
+              left: this.props.left,
+              right: this.props.right,  
             },
             this.props.position==="bottom"?{bottom: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1, 0]})}:
               {top: this.state.translateValue.interpolate({inputRange: [0, 1], outputRange: [this.state.hideDistance*-1,0]})},
@@ -118,6 +120,8 @@ SnackbarComponent.defaultProps = {
   messageColor:"#FFFFFF",
   backgroundColor:"#484848",
   distanceCallback: noop,
+  left: 0,
+  right: 0,
   bottom: 0,
   position: "bottom",
 };
@@ -127,6 +131,8 @@ SnackbarComponent.propTypes = {
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   distanceCallback: PropTypes.func,
+  left: PropTypes.number,
+  right: PropTypes.number,
   bottom: PropTypes.number,
   position: PropTypes.string, // bottom (default), top
 };
@@ -134,30 +140,30 @@ SnackbarComponent.propTypes = {
 const styles = StyleSheet.create({
   limit_container: {
     position: 'absolute',
+    overflow: 'hidden',
     left: 0,
     right: 0,
-    overflow: 'hidden',
     zIndex: 9999,
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    paddingLeft: 24,
-    paddingRight: 24,
-    paddingTop: 14,
-    paddingBottom: 14
+    position: 'absolute'
   },
   text_msg: {
     fontSize: 14,
-    flex: 1
+    flex: 1,
+    paddingLeft: 20,    
+    paddingTop: 14,
+    paddingBottom: 14
   },
   action_text: {
     fontSize: 14,
-    fontWeight: '600'
+    fontWeight: '600',
+    paddingRight: 20,
+    paddingTop: 14,
+    paddingBottom: 14
   }
 });
 
