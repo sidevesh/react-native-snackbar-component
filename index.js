@@ -35,6 +35,8 @@ class SnackbarComponent extends Component {
   }
 
   render() {
+    const { actionTextWrapperStyle } = this.props;
+
     return (
       <Animated.View style={[
           styles.limit_container,
@@ -61,7 +63,7 @@ class SnackbarComponent extends Component {
         >
           <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
           {this.props.actionHandler && this.props.actionText &&
-            <Touchable onPress={() => {this.props.actionHandler()}} >
+            <Touchable onPress={() => {this.props.actionHandler()}} style={actionTextWrapperStyle}>
               <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
             </Touchable>
           }
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
     paddingBottom: 14
   },
   action_text: {
+    textAlign: 'center',
     fontSize: 14,
     fontWeight: '600',
     paddingRight: 20,
