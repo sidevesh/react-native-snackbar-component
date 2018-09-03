@@ -6,7 +6,8 @@ import {
   View,
   Image,
   Animated,
-  Easing
+  Easing,
+  TouchableOpacity
 } from 'react-native';
 import { Touchable } from './src';
 import { noop } from './src/utils';
@@ -61,12 +62,14 @@ class SnackbarComponent extends Component {
             this.setState({hideDistance: event.nativeEvent.layout.height});
           }}
         >
+          <Touchable onPress={this.props.onPress} style={styles.content_container}>
           <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
           {this.props.actionHandler && this.props.actionText &&
             <Touchable onPress={() => {this.props.actionHandler()}} style={actionTextWrapperStyle}>
               <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
             </Touchable>
           }
+          </Touchable>
         </Animated.View>
       </Animated.View>
     );
@@ -147,10 +150,12 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 9999,
   },
-  container: {
+  content_container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  container: {
     position: 'absolute'
   },
   text_msg: {
