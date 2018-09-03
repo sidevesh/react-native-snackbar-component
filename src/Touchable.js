@@ -16,7 +16,7 @@ const Touchable = ({ onPress, style, children }) => {
   if (IS_ANDROID && !IS_LT_LOLLIPOP) {
     return (
       <TouchableNativeFeedback
-        background={TouchableNativeFeedback.SelectableBackgroundBorderless()}
+        background={TouchableNativeFeedback.Ripple('#d6d6d6', false)}
         onPress={onPress}
       >
         <View
