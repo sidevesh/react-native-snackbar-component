@@ -57,7 +57,7 @@ class SnackbarComponent extends Component {
             this.setState({hideDistance: event.nativeEvent.layout.height});
           }}
         >
-          <Text style={[styles.text_msg, {color: this.props.messageColor},this.props.textStyle]}>{this.props.textMessage}</Text>
+          <Text style={[styles.text_msg, {color: this.props.messageColor}]}>{this.props.textMessage}</Text>
           {this.props.actionHandler && !!this.props.actionText &&
             <Touchable onPress={() => {this.props.actionHandler()}} >
               <Text style={[styles.action_text, {color: this.props.accentColor}]}>{this.props.actionText.toUpperCase()}</Text>
@@ -120,7 +120,6 @@ SnackbarComponent.defaultProps = {
   distanceCallback: noop,
   bottom: 0,
   position: "bottom",
-  textStyle:{}
 };
 
 SnackbarComponent.propTypes = {
@@ -130,7 +129,6 @@ SnackbarComponent.propTypes = {
   distanceCallback: PropTypes.func,
   bottom: PropTypes.number,
   position: PropTypes.string, // bottom (default), top
-  textStyle:PropTypes.any
 };
 
 const styles = StyleSheet.create({
