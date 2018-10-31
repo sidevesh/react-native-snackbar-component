@@ -1,15 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Animated,
-  Easing,
-} from 'react-native';
-import { Touchable } from './src';
-import { noop } from './src/utils';
+import {StyleSheet, Text, View, Image, Animated, Easing} from 'react-native';
+import {Touchable} from './src';
+import {noop} from './src/utils';
 /*
 * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
 */
@@ -25,7 +18,6 @@ const duration_values = {
 };
 
 class SnackbarComponent extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -40,12 +32,16 @@ class SnackbarComponent extends Component {
         style={[
           styles.limit_container,
           {
-            height: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [0, this.state.hideDistance] }),
+            height: this.state.translateValue.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, this.state.hideDistance],
+            }),
             backgroundColor: this.props.backgroundColor,
           },
-          this.props.position === 'bottom' ? { bottom: this.props.bottom } : { top: this.props.bottom },
-        ]}
-      >
+          this.props.position === 'bottom'
+            ? {bottom: this.props.bottom}
+            : {top: this.props.bottom},
+        ]}>
         <Animated.View
           style={[
             styles.container,
@@ -54,19 +50,43 @@ class SnackbarComponent extends Component {
               left: this.props.left,
               right: this.props.right,
             },
-            this.props.position === 'bottom' ? { bottom: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [this.state.hideDistance * -1, 0] }) } :
-              { top: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [this.state.hideDistance * -1, 0] }) },
+            this.props.position === 'bottom'
+              ? {
+                  bottom: this.state.translateValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [this.state.hideDistance * -1, 0],
+                  }),
+                }
+              : {
+                  top: this.state.translateValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [this.state.hideDistance * -1, 0],
+                  }),
+                },
           ]}
-          onLayout={(event) => {
-            this.setState({ hideDistance: event.nativeEvent.layout.height });
-          }}
-        >
-          <Text style={[styles.text_msg, { color: this.props.messageColor }]}>{this.props.textMessage}</Text>
-          {this.props.actionHandler && this.props.actionText &&
-            <Touchable onPress={() => { this.props.actionHandler(); }} >
-              <Text style={[styles.action_text, { color: this.props.accentColor }]}>{this.props.actionText.toUpperCase()}</Text>
-            </Touchable>
-          }
+          onLayout={event => {
+            this.setState({hideDistance: event.nativeEvent.layout.height});
+          }}>
+          <Text
+            style={[
+              styles.text_msg,
+              {color: this.props.messageColor},
+              {paddingTop: 14 + this.props.statusBarHeight},
+            ]}>
+            {this.props.textMessage}
+          </Text>
+          {this.props.actionHandler &&
+            this.props.actionText && (
+              <Touchable
+                onPress={() => {
+                  this.props.actionHandler();
+                }}>
+                <Text
+                  style={[styles.action_text, {color: this.props.accentColor}]}>
+                  {this.props.actionText.toUpperCase()}
+                </Text>
+              </Touchable>
+            )}
         </Animated.View>
       </Animated.View>
     );
@@ -75,38 +95,35 @@ class SnackbarComponent extends Component {
   componentDidMount() {
     if (this.props.visible) {
       this.state.translateValue.setValue(1);
-    }
-    else {
+    } else {
       this.state.translateValue.setValue(0);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((nextProps.visible) && (!this.props.visible)) {
-      Animated.timing(
-        this.state.translateValue,
-        {
-          duration: duration_values.entry,
-          toValue: 1,
-          easing: easing_values.entry,
-        },
-      ).start();
+    if (nextProps.visible && !this.props.visible) {
+      Animated.timing(this.state.translateValue, {
+        duration: duration_values.entry,
+        toValue: 1,
+        easing: easing_values.entry,
+      }).start();
       if (nextProps.autoHidingTime) {
         const hideFunc = this.hideSnackbar.bind(this);
         setTimeout(hideFunc, nextProps.autoHidingTime);
       }
-    }
-    else if ((!nextProps.visible) && (this.props.visible)) {
+    } else if (!nextProps.visible && this.props.visible) {
       this.hideSnackbar();
     }
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if ((nextProps.visible !== this.props.visible) || (nextState.hideDistance !== this.state.hideDistance)) {
+    if (
+      nextProps.visible !== this.props.visible ||
+      nextState.hideDistance !== this.state.hideDistance
+    ) {
       if (nextProps.visible) {
         this.props.distanceCallback(nextState.hideDistance + this.props.bottom);
-      }
-      else {
+      } else {
         this.props.distanceCallback(this.props.bottom);
       }
     }
@@ -117,16 +134,12 @@ class SnackbarComponent extends Component {
    * @return {null} No return.
    */
   hideSnackbar() {
-    Animated.timing(
-      this.state.translateValue,
-      {
-        duration: duration_values.exit,
-        toValue: 0,
-        easing: easing_values.exit,
-      },
-    ).start();
+    Animated.timing(this.state.translateValue, {
+      duration: duration_values.exit,
+      toValue: 0,
+      easing: easing_values.exit,
+    }).start();
   }
-
 }
 
 SnackbarComponent.defaultProps = {
@@ -171,7 +184,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     flex: 1,
     paddingLeft: 20,
-    paddingTop: 14,
     paddingBottom: 14,
   },
   action_text: {
