@@ -71,7 +71,7 @@ class SnackbarComponent extends Component {
             style={[
               styles.text_msg,
               {color: this.props.messageColor},
-              {paddingTop: 14 + this.props.statusBarHeight},
+              {paddingTop: 14 + this.props.statusBarHeight || 0},
             ]}>
             {this.props.textMessage}
           </Text>
