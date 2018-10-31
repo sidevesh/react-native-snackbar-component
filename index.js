@@ -106,6 +106,7 @@ class SnackbarComponent extends Component {
         duration: duration_values.entry,
         toValue: 1,
         easing: easing_values.entry,
+        useNativeDriver: true,
       }).start();
       if (nextProps.autoHidingTime) {
         const hideFunc = this.hideSnackbar.bind(this);
@@ -138,6 +139,7 @@ class SnackbarComponent extends Component {
       duration: duration_values.exit,
       toValue: 0,
       easing: easing_values.exit,
+      useNativeDriver: true,
     }).start();
   }
 }
