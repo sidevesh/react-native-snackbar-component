@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, Text, View, Image, Animated, Easing} from 'react-native';
-import {Touchable} from './src';
-import {noop} from './src/utils';
+import { UIManager, StyleSheet, Text, View, Image, Animated, Easing } from 'react-native';
+import { Touchable } from './src';
 /*
 * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
 */
@@ -17,77 +16,41 @@ const duration_values = {
   exit: 195,
 };
 
+const height = 46;
 class SnackbarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       translateValue: new Animated.Value(0),
-      hideDistance: 9999,
+      heightWithStatusBar: props.statusBarHeight + height,
     };
   }
 
   render() {
+    const { backgroundColor, textMessage, messageColor } = this.props;
+    const { heightWithStatusBar, translateValue } = this.state;
+
     return (
       <Animated.View
         style={[
-          styles.limit_container,
+          styles.container,
           {
-            height: this.state.translateValue.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, this.state.hideDistance],
-            }),
-            backgroundColor: this.props.backgroundColor,
+            height: heightWithStatusBar,
+            backgroundColor,
+            transform: [
+              {
+                translateY: translateValue.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [heightWithStatusBar * -1, 0],
+                }),
+              },
+            ],
           },
-          this.props.position === 'bottom'
-            ? {bottom: this.props.bottom}
-            : {top: this.props.bottom},
-        ]}>
-        <Animated.View
-          style={[
-            styles.container,
-            {
-              backgroundColor: this.props.backgroundColor,
-              left: this.props.left,
-              right: this.props.right,
-            },
-            this.props.position === 'bottom'
-              ? {
-                  bottom: this.state.translateValue.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.state.hideDistance * -1, 0],
-                  }),
-                }
-              : {
-                  top: this.state.translateValue.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.state.hideDistance * -1, 0],
-                  }),
-                },
-          ]}
-          onLayout={event => {
-            this.setState({hideDistance: event.nativeEvent.layout.height});
-          }}>
-          <Text
-            style={[
-              styles.text_msg,
-              {color: this.props.messageColor},
-              {paddingTop: 14 + this.props.statusBarHeight || 0},
-            ]}>
-            {this.props.textMessage}
-          </Text>
-          {this.props.actionHandler &&
-            this.props.actionText && (
-              <Touchable
-                onPress={() => {
-                  this.props.actionHandler();
-                }}>
-                <Text
-                  style={[styles.action_text, {color: this.props.accentColor}]}>
-                  {this.props.actionText.toUpperCase()}
-                </Text>
-              </Touchable>
-            )}
-        </Animated.View>
+        ]}
+      >
+        <View style={{ height, flex: 1, justifyContent: 'center' }}>
+          <Text style={[styles.text_msg, { color: messageColor }]}>{textMessage}</Text>
+        </View>
       </Animated.View>
     );
   }
@@ -106,26 +69,10 @@ class SnackbarComponent extends Component {
         duration: duration_values.entry,
         toValue: 1,
         easing: easing_values.entry,
+        useNativeDriver: true,
       }).start();
-      if (nextProps.autoHidingTime) {
-        const hideFunc = this.hideSnackbar.bind(this);
-        setTimeout(hideFunc, nextProps.autoHidingTime);
-      }
     } else if (!nextProps.visible && this.props.visible) {
       this.hideSnackbar();
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (
-      nextProps.visible !== this.props.visible ||
-      nextState.hideDistance !== this.state.hideDistance
-    ) {
-      if (nextProps.visible) {
-        this.props.distanceCallback(nextState.hideDistance + this.props.bottom);
-      } else {
-        this.props.distanceCallback(this.props.bottom);
-      }
     }
   }
 
@@ -138,60 +85,35 @@ class SnackbarComponent extends Component {
       duration: duration_values.exit,
       toValue: 0,
       easing: easing_values.exit,
+      useNativeDriver: true,
     }).start();
   }
 }
 
 SnackbarComponent.defaultProps = {
-  accentColor: 'orange',
   messageColor: '#FFFFFF',
   backgroundColor: '#484848',
-  distanceCallback: noop,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  position: 'bottom',
-  autoHidingTime: 0, // Default value will not auto hide the snack bar as the old version.
 };
 
 SnackbarComponent.propTypes = {
-  accentColor: PropTypes.string,
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
-  distanceCallback: PropTypes.func,
-  left: PropTypes.number,
-  right: PropTypes.number,
-  bottom: PropTypes.number,
-  position: PropTypes.string, // bottom (default), top
-  autoHidingTime: PropTypes.number, // How long (in milliseconds) the snack bar will be hidden.
 };
 
 const styles = StyleSheet.create({
-  limit_container: {
+  container: {
     position: 'absolute',
     overflow: 'hidden',
     left: 0,
     right: 0,
     zIndex: 9999,
-  },
-  container: {
+    top: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'absolute',
+    alignItems: 'flex-end',
   },
   text_msg: {
     fontSize: 14,
-    flex: 1,
     paddingLeft: 20,
-    paddingBottom: 14,
-  },
-  action_text: {
-    fontSize: 14,
-    fontWeight: '600',
-    paddingRight: 20,
-    paddingTop: 14,
-    paddingBottom: 14,
   },
 });
 
