@@ -99,6 +99,10 @@ class SnackbarComponent extends Component {
     else if ((!nextProps.visible) && (this.props.visible)) {
       this.hideSnackbar(false);
     }
+    else if ((nextProps.visible) && (this.props.visible) && nextProps.autoHidingTime) {
+      const hideFunc = this.hideSnackbar.bind(this);
+      setTimeout(hideFunc, nextProps.autoHidingTime);
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
