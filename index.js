@@ -97,7 +97,7 @@ class SnackbarComponent extends Component {
       }
     }
     else if ((!nextProps.visible) && (this.props.visible)) {
-      this.hideSnackbar();
+      this.hideSnackbar(false);
     }
   }
 
@@ -114,9 +114,8 @@ class SnackbarComponent extends Component {
 
   /**
    * Starting te animation to hide the snack bar.
-   * @return {null} No return.
    */
-  hideSnackbar() {
+  hideSnackbar(doCallback) {
     Animated.timing(
       this.state.translateValue,
       {
@@ -124,7 +123,11 @@ class SnackbarComponent extends Component {
         toValue: 0,
         easing: easing_values.exit,
       },
-    ).start();
+    ).start(() => {
+      if (doCallback !== false) {
+        this.props.onHide()
+      }
+    });
   }
 
 }
@@ -134,6 +137,7 @@ SnackbarComponent.defaultProps = {
   messageColor: '#FFFFFF',
   backgroundColor: '#484848',
   distanceCallback: noop,
+  onHide: noop,
   left: 0,
   right: 0,
   bottom: 0,
@@ -146,6 +150,7 @@ SnackbarComponent.propTypes = {
   messageColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   distanceCallback: PropTypes.func,
+  onHide: PropTypes.func,
   left: PropTypes.number,
   right: PropTypes.number,
   bottom: PropTypes.number,
