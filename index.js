@@ -35,36 +35,53 @@ class SnackbarComponent extends Component {
   }
 
   render() {
+    const {
+      translateValue,
+      hideDistance,
+    } = this.state;
+    const {
+      backgroundColor,
+      position,
+      bottom,
+      left,
+      right,
+      messageColor,
+      textMessage,
+      actionHandler,
+      actionText,
+      actionHandler,
+      accentColor,
+    } = this.props;
     return (
       <Animated.View
         style={[
           styles.limit_container,
           {
-            height: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [0, this.state.hideDistance] }),
-            backgroundColor: this.props.backgroundColor,
+            height: translateValue.interpolate({ inputRange: [0, 1], outputRange: [0, hideDistance] }),
+            backgroundColor,
           },
-          this.props.position === 'bottom' ? { bottom: this.props.bottom } : { top: this.props.bottom },
+          position === 'bottom' ? { bottom: bottom } : { top: bottom },
         ]}
       >
         <Animated.View
           style={[
             styles.container,
             {
-              backgroundColor: this.props.backgroundColor,
-              left: this.props.left,
-              right: this.props.right,
+              backgroundColor: backgroundColor,
+              left: left,
+              right: right,
             },
-            this.props.position === 'bottom' ? { bottom: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [this.state.hideDistance * -1, 0] }) } :
-              { top: this.state.translateValue.interpolate({ inputRange: [0, 1], outputRange: [this.state.hideDistance * -1, 0] }) },
+            position === 'bottom' ? { bottom: translateValue.interpolate({ inputRange: [0, 1], outputRange: [hideDistance * -1, 0] }) } :
+              { top: translateValue.interpolate({ inputRange: [0, 1], outputRange: [this.state.hideDistance * -1, 0] }) },
           ]}
           onLayout={(event) => {
             this.setState({ hideDistance: event.nativeEvent.layout.height });
           }}
         >
-          <Text style={[styles.text_msg, { color: this.props.messageColor }]}>{this.props.textMessage}</Text>
-          {this.props.actionHandler && this.props.actionText &&
-            <Touchable onPress={() => { this.props.actionHandler(); }} >
-              <Text style={[styles.action_text, { color: this.props.accentColor }]}>{this.props.actionText.toUpperCase()}</Text>
+          <Text style={[styles.text_msg, { color: messageColor }]}>{textMessage}</Text>
+          {actionHandler && actionText &&
+            <Touchable onPress={() => { actionHandler(); }} >
+              <Text style={[styles.action_text, { color: accentColor }]}>{actionText.toUpperCase()}</Text>
             </Touchable>
           }
         </Animated.View>
