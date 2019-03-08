@@ -47,6 +47,7 @@ class SnackbarComponent extends Component {
       right,
       messageColor,
       textMessage,
+      textStyle: {},
       actionHandler,
       actionText,
       actionHandler,
@@ -78,7 +79,7 @@ class SnackbarComponent extends Component {
             this.setState({ hideDistance: event.nativeEvent.layout.height });
           }}
         >
-          <Text style={[styles.text_msg, { color: messageColor }]}>{textMessage}</Text>
+          <Text style={[styles.text_msg, ...textStyle, { color: messageColor }]}>{textMessage}</Text>
           {actionHandler && actionText &&
             <Touchable onPress={() => { actionHandler(); }} >
               <Text style={[styles.action_text, { color: accentColor }]}>{actionText.toUpperCase()}</Text>
