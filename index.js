@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, Text, Animated, Easing } from 'react-native';
-import { Touchable } from './src';
-import { noop } from './src/utils';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { StyleSheet, Text, Animated, Easing } from "react-native";
+import { Touchable } from "./src";
+import { noop } from "./src/utils";
 /*
  * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
  */
 
 const easingValues = {
   entry: Easing.bezier(0.0, 0.0, 0.2, 1),
-  exit: Easing.bezier(0.4, 0.0, 1, 1),
+  exit: Easing.bezier(0.4, 0.0, 1, 1)
 };
 
 const durationValues = {
   entry: 225,
-  exit: 195,
+  exit: 195
 };
 
 class SnackbarComponent extends Component {
@@ -22,7 +22,7 @@ class SnackbarComponent extends Component {
     super(props);
     this.state = {
       translateValue: new Animated.Value(0),
-      hideDistance: 9999,
+      hideDistance: 9999
     };
   }
 
@@ -34,13 +34,11 @@ class SnackbarComponent extends Component {
           {
             height: this.state.translateValue.interpolate({
               inputRange: [0, 1],
-              outputRange: [0, this.state.hideDistance],
+              outputRange: [0, this.state.hideDistance]
             }),
-            backgroundColor: this.props.backgroundColor,
+            backgroundColor: this.props.backgroundColor
           },
-          this.props.position === 'bottom'
-            ? { bottom: this.props.bottom }
-            : { top: this.props.bottom },
+          { [this.props.position]: this.props[this.props.position] }
         ]}
       >
         <Animated.View
@@ -49,21 +47,14 @@ class SnackbarComponent extends Component {
             {
               backgroundColor: this.props.backgroundColor,
               left: this.props.left,
-              right: this.props.right,
+              right: this.props.right
             },
-            this.props.position === 'bottom'
-              ? {
-                bottom: this.state.translateValue.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [this.state.hideDistance * -1, 0],
-                }),
-              }
-              : {
-                top: this.state.translateValue.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [this.state.hideDistance * -1, 0],
-                }),
-              },
+            {
+              [this.props.position]: this.state.translateValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [this.state.hideDistance * -1, 0]
+              })
+            }
           ]}
           onLayout={(event) => {
             this.setState({ hideDistance: event.nativeEvent.layout.height });
@@ -78,7 +69,9 @@ class SnackbarComponent extends Component {
                 this.props.actionHandler();
               }}
             >
-              <Text style={[styles.action_text, { color: this.props.accentColor }]}>
+              <Text
+                style={[styles.action_text, { color: this.props.accentColor }]}
+              >
                 {this.props.actionText.toUpperCase()}
               </Text>
             </Touchable>
@@ -101,7 +94,7 @@ class SnackbarComponent extends Component {
       Animated.timing(this.state.translateValue, {
         duration: durationValues.entry,
         toValue: 1,
-        easing: easingValues.entry,
+        easing: easingValues.entry
       }).start();
       if (nextProps.autoHidingTime) {
         const hideFunc = this.hideSnackbar.bind(this);
@@ -133,25 +126,25 @@ class SnackbarComponent extends Component {
     Animated.timing(this.state.translateValue, {
       duration: durationValues.exit,
       toValue: 0,
-      easing: easingValues.exit,
+      easing: easingValues.exit
     }).start();
   }
 }
 
 SnackbarComponent.defaultProps = {
-  accentColor: 'orange',
-  messageColor: '#FFFFFF',
-  backgroundColor: '#484848',
+  accentColor: "orange",
+  messageColor: "#FFFFFF",
+  backgroundColor: "#484848",
   distanceCallback: noop,
   actionHandler: noop,
   left: 0,
   right: 0,
   bottom: 0,
   visible: false,
-  position: 'bottom',
-  actionText: '',
-  textMessage: '',
-  autoHidingTime: 0, // Default value will not auto hide the snack bar as the old version.
+  position: "bottom",
+  actionText: "",
+  textMessage: "",
+  autoHidingTime: 0 // Default value will not auto hide the snack bar as the old version.
 };
 
 SnackbarComponent.propTypes = {
@@ -166,38 +159,38 @@ SnackbarComponent.propTypes = {
   visible: PropTypes.boolean,
   actionText: PropTypes.string,
   textMessage: PropTypes.string,
-  position: PropTypes.oneOf(['bottom', 'top']), // bottom (default), top
-  autoHidingTime: PropTypes.number, // How long (in milliseconds) the snack bar will be hidden.
+  position: PropTypes.oneOf(["bottom", "top"]), // bottom (default), top
+  autoHidingTime: PropTypes.number // How long (in milliseconds) the snack bar will be hidden.
 };
 
 const styles = StyleSheet.create({
   limit_container: {
-    position: 'absolute',
-    overflow: 'hidden',
+    position: "absolute",
+    overflow: "hidden",
     left: 0,
     right: 0,
-    zIndex: 9999,
+    zIndex: 9999
   },
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'absolute',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "absolute"
   },
   text_msg: {
     fontSize: 14,
     flex: 1,
     paddingLeft: 20,
     paddingTop: 14,
-    paddingBottom: 14,
+    paddingBottom: 14
   },
   action_text: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
     paddingRight: 20,
     paddingTop: 14,
-    paddingBottom: 14,
-  },
+    paddingBottom: 14
+  }
 });
 
 export default SnackbarComponent;
