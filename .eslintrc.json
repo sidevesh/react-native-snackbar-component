@@ -11,6 +11,7 @@
     "react/jsx-filename-extension": "off",
     "react/sort-comp": "off",
     "no-use-before-define": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/img-has-alt": "off"
   }
 }
