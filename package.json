@@ -28,7 +28,7 @@
   "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
-    "eslint": "^5.11.0",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
