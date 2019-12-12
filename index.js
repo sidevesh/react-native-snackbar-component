@@ -65,19 +65,17 @@ class SnackbarComponent extends Component {
           <Text style={[styles.text_msg, { color: this.props.messageColor }]}>
             {this.props.textMessage}
           </Text>
-          {this.props.actionHandler && !!this.props.actionText && (
+          {(this.props.actionHandler && !!this.props.actionText) ? (
             <Touchable
               onPress={() => {
                 this.props.actionHandler();
               }}
             >
-              <Text
-                style={[styles.action_text, { color: this.props.accentColor }]}
-              >
+              <Text style={[styles.action_text, { color: this.props.accentColor }]}>
                 {this.props.actionText.toUpperCase()}
               </Text>
             </Touchable>
-          )}
+          ) : null}
         </Animated.View>
       </Animated.View>
     );
