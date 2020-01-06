@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.defaultLanguage": "javascriptreact",
+    "files.associations": {
+      "*.js": "javascriptreact"
+    },
+    // Prettier
+    "editor.formatOnSave": true,
+    // Line endigs force UNIX
+    "files.eol": "\n",
+  },
+  // Recommended plugins
+  "extensions": {
+    "recommendations": [
+      "esbenp.prettier-vscode",
+    ]
+  }
+}
