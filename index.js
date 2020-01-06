@@ -34,7 +34,7 @@ const SnackbarComponent = ({
   const [hideDistance, setHideDistance] = useState(9999);
   const translateVal = useRef(new Animated.Value(0));
   const translateValue = translateVal.current;
-  const positionMap = { light, left, bottom };
+  const positionMap = { right, left, bottom };
 
   const hideSnackbar = () => {
     Animated.timing(translateValue, {
