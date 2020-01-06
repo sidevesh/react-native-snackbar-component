@@ -20,6 +20,7 @@ const durationValues = {
 const SnackbarComponent = ({
   distanceCallback,
   backgroundColor,
+  autoHidingTime,
   actionHandler,
   messageColor,
   accentColor,
@@ -62,8 +63,9 @@ const SnackbarComponent = ({
         toValue: 1,
         easing: easingValues.entry
       }).start();
-      if (nextProps.autoHidingTime) {
-        setTimeout(hideSnackbar, nextProps.autoHidingTime);
+
+      if (autoHidingTime) {
+        setTimeout(hideSnackbar, autoHidingTime);
       }
     } else if (!visible && prevVisible) {
       hideSnackbar();
@@ -79,7 +81,7 @@ const SnackbarComponent = ({
 
     pD.current = hideDistance;
     pV.current = visible;
-  }, [visible, hideDistance]);
+  }, [visible, hideDistance, autoHidingTime]);
 
   return (
     <Animated.View
