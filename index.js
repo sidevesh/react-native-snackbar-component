@@ -36,6 +36,9 @@ const SnackbarComponent = ({
   const translateValue = translateVal.current;
   const positionMap = { right, left, bottom };
 
+  const pV = useRef(hideDistance);
+  const pD = useRef(visible);
+
   const hideSnackbar = () => {
     Animated.timing(translateValue, {
       duration: durationValues.exit,
@@ -50,6 +53,9 @@ const SnackbarComponent = ({
 
   // componentWillReceiveProps
   useEffect(() => {
+    const prevVisible = pV.current;
+    const prevHideDistance = pD.current;
+
     if (visible && !prevVisible) {
       Animated.timing(translateValue, {
         duration: durationValues.entry,
@@ -62,17 +68,17 @@ const SnackbarComponent = ({
     } else if (!visible && prevVisible) {
       hideSnackbar();
     }
-  }, [visible]);
 
-  // componentWillUpdate
-  useEffect(() => {
     if (visible !== prevVisible || hideDistance !== prevHideDistance) {
       if (visible) {
-        distanceCallback && distanceCallback(nexthideDistance + bottom);
+        distanceCallback && distanceCallback(hideDistance + bottom);
       } else {
         distanceCallback && distanceCallback(bottom);
       }
     }
+
+    pD.current = hideDistance;
+    pV.current = visible;
   }, [visible, hideDistance]);
 
   return (
