@@ -27,27 +27,26 @@ const Touchable = ({ onPress, style, children }) => {
       </TouchableNativeFeedback>
     );
   }
-  else {
-    return (
-      <TouchableOpacity
-        onPress={onPress}
-        style={style}
-      >
-        {children}
-      </TouchableOpacity>
-    );
-  }
+
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={style}
+    >
+      {children}
+    </TouchableOpacity>
+  );
 };
 
 Touchable.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  onPress: PropTypes.func,
   style: ViewPropTypes.style,
   children: PropTypes.node.isRequired,
 };
 
 Touchable.defaultProps = {
   onPress: noop,
-  style: {}
+  style: {},
 };
 
 export default Touchable;
