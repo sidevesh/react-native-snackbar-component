@@ -1,10 +1,6 @@
 # React-Native-SnackBar-Component
 A snackbar component for Android and iOS, customizable and simple.
 
-## Looking for maintainers  
-Due to my other commitments, I haven't been able to maintain this library properly for a while,
-If you are interested in taking over the development of this library, raise a PR or email me at sid.swapnildevesh@gmail.com mentioning your interest. Thanks!
-
 ![Snackbar demo](https://media.giphy.com/media/zChTSWog7TNmM/giphy.gif)
 ![With fab](https://media.giphy.com/media/6oCCk98unakbC/giphy.gif)
 
