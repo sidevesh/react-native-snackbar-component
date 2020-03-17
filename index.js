@@ -106,7 +106,8 @@ class SnackbarComponent extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.visible && !this.props.visible) {
       Animated.timing(this.state.translateValue, {
         duration: durationValues.entry,
@@ -122,7 +123,8 @@ class SnackbarComponent extends Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     if (
       this.props.distanceCallback !== null
       && (
@@ -185,6 +187,7 @@ SnackbarComponent.propTypes = {
   actionText: PropTypes.string,
   textMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   position: PropTypes.oneOf(['bottom', 'top']), // bottom (default), top
+  // eslint-disable-next-line react/no-unused-prop-types
   autoHidingTime: PropTypes.number, // How long (in milliseconds) the snack bar will be hidden.
   containerStyle: ViewPropTypes.style,
   messageStyle: Text.propTypes.style,
