@@ -1,4 +1,4 @@
-# React-Native-SnackBar-Component
+# react-native-snackbar-component
 A snackbar component for Android and iOS, customizable and simple.
 
 ![Snackbar demo](https://media.giphy.com/media/zChTSWog7TNmM/giphy.gif)
@@ -45,4 +45,4 @@ import SnackBar from 'react-native-snackbar-component'
 
 * When visible prop is changed, the snackbar will be animated in/out of screen
 * The snackbar will not auto-dismiss by itself, for auto-dismiss use setTimeout() and change value passed to prop to false. 
-* This works great together with [react-native-fab](https://github.com/SiDevesh/React-Native-FAB). See [demo](https://github.com/SiDevesh/snackbar-and-fab-demo) for example and instructions how to.
+* This works great together with [react-native-fab](https://github.com/sidevesh/react-native-fab). See [demo](https://github.com/sidevesh/snackbar-and-fab-demo) for example and instructions how to.

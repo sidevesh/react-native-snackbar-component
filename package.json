@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SiDevesh/React-Native-SnackBar.git"
+    "url": "git+https://github.com/sidevesh/react-native-snackbar-component.git"
   },
   "keywords": [
     "snackbar",
@@ -23,9 +23,9 @@
   "author": "SiDevesh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SiDevesh/React-Native-SnackBar/issues"
+    "url": "https://github.com/sidevesh/react-native-snackbar-component/issues"
   },
-  "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme",
+  "homepage": "https://github.com/sidevesh/react-native-snackbar-component#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^5.11.0",
