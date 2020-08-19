@@ -1,6 +1,6 @@
 {
   "name": "@skyscanner/react-native-snackbar-component",
-  "version": "1.1.3",
+  "version": "1.1.10",
   "description": "A snackbar component for Android and iOS",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SiDevesh/React-Native-SnackBar.git"
+    "url": "git+https://github.com/sidevesh/react-native-snackbar-component.git"
   },
   "keywords": [
     "snackbar",
@@ -20,12 +20,12 @@
     "notifications",
     "react-native"
   ],
-  "author": "SiDevesh",
+  "author": "sidevesh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SiDevesh/React-Native-SnackBar/issues"
+    "url": "https://github.com/sidevesh/react-native-snackbar-component/issues"
   },
-  "homepage": "https://github.com/SiDevesh/React-Native-SnackBar#readme",
+  "homepage": "https://github.com/sidevesh/react-native-snackbar-component#readme",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^5.11.0",
