@@ -212,14 +212,15 @@ const styles = StyleSheet.create({
   textMessage: {
     fontSize: 14,
     flex: 1,
-    paddingLeft: 20,
+    textAlign: 'left',
+    paddingStart: 20,
     paddingTop: 14,
     paddingBottom: 14,
   },
   actionText: {
     fontSize: 14,
     fontWeight: '600',
-    paddingRight: 20,
+    paddingEnd: 20,
     paddingTop: 14,
     paddingBottom: 14,
   },
