@@ -9,13 +9,13 @@ See [Google Material Design](https://material.io/guidelines/components/snackbars
 ## Installation
 
 ```sh
-npm install --save @skyscanner/react-native-snackbar-component
+npm install --save react-native-snackbar-component
 ```
 
 ## Basic Usage
 
 ```javascript
-import SnackBar from '@skyscanner/react-native-snackbar-component'
+import SnackBar from 'react-native-snackbar-component'
 ```
 
 ## Code

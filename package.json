@@ -1,5 +1,5 @@
 {
-  "name": "@skyscanner/react-native-snackbar-component",
+  "name": "react-native-snackbar-component",
   "version": "1.1.10",
   "description": "A snackbar component for Android and iOS",
   "main": "index.js",
