@@ -47,7 +47,6 @@ class SnackbarComponent extends Component {
       >
         <Animated.View
           style={[
-            this.props.containerStyle,
             styles.container,
             {
               backgroundColor: this.props.backgroundColor,
@@ -60,6 +59,7 @@ class SnackbarComponent extends Component {
                 outputRange: [this.state.hideDistance * -1, 0],
               }),
             },
+            this.props.containerStyle,
           ]}
           onLayout={event => this.setState({ hideDistance: event.nativeEvent.layout.height })}
         >
@@ -68,9 +68,9 @@ class SnackbarComponent extends Component {
             : (
               <Text
                 style={[
-                  this.props.messageStyle,
                   styles.textMessage,
                   { color: this.props.messageColor },
+                  this.props.messageStyle,
                 ]}
               >
                 {this.props.textMessage}
@@ -82,9 +82,9 @@ class SnackbarComponent extends Component {
               <Touchable onPress={this.props.actionHandler}>
                 <Text
                   style={[
-                    this.props.actionStyle,
                     styles.actionText,
                     { color: this.props.accentColor },
+                    this.props.actionStyle,
                   ]}
                 >
                   {this.props.actionText.toUpperCase()}
