@@ -113,6 +113,7 @@ class SnackbarComponent extends Component {
         duration: durationValues.entry,
         toValue: 1,
         easing: easingValues.entry,
+        useNativeDriver: this.props.useNativeDriver,
       }).start();
       if (nextProps.autoHidingTime) {
         const hideFunc = this.hideSnackbar.bind(this);
@@ -149,6 +150,7 @@ class SnackbarComponent extends Component {
       duration: durationValues.exit,
       toValue: 0,
       easing: easingValues.exit,
+      useNativeDriver: this.props.useNativeDriver,
     }).start();
   }
 }
@@ -171,6 +173,7 @@ SnackbarComponent.defaultProps = {
   containerStyle: {},
   messageStyle: {},
   actionStyle: {},
+  useNativeDriver: false,
 };
 
 SnackbarComponent.propTypes = {
@@ -192,6 +195,7 @@ SnackbarComponent.propTypes = {
   containerStyle: ViewPropTypes.style,
   messageStyle: Text.propTypes.style,
   actionStyle: Text.propTypes.style,
+  useNativeDriver: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
