@@ -33,7 +33,7 @@ import SnackBar from 'react-native-snackbar-component'
 | backgroundColor | color | The background color of snackbar | #484848 |
 | accentColor | color | The color of action button text | orange |
 | messageColor | color | The color of main message text | #FFFFFF |
-| distanceCallback | function | Function to be called whenever snackbar moves in and out or changes layout, the function will be supplied a number indicating distance taken up by snackbar on bottom or top, based on position. | (distance) => {} |
+| distanceCallback | function | Function to be caled whenever snackbar moves in and out or changes layout, the function will be supplied a number indicating distance taken up by snackbar on bottom or top, based on position. | (distance) => {} |
 | position | string | The position of the snackbar: top, bottom | bottom |
 | top / bottom / left / right | number | Use these to position the snackbar | 0 |
 | autoHidingTime | number | How many milliseconds the snackbar will be hidden | 0 (Do not hide automatically) |
@@ -44,5 +44,6 @@ import SnackBar from 'react-native-snackbar-component'
 ## Note
 
 * When visible prop is changed, the snackbar will be animated in/out of screen
-* The snackbar will not auto-dismiss by itself, for auto-dismiss use setTimeout() and change value passed to prop to false. 
+* The snackbar will not auto-dismiss by itself, for auto-dismiss use setTimeout() and change value passed to prop to false,  
+  **OR** you can set `autoHidingTime` to any particular value to hide the snackbar itself, although you will need to reset `visible` to false manually after the `autoHidingTime` period is over, since `visible` is controlled from outside.
 * This works great together with [react-native-fab](https://github.com/sidevesh/react-native-fab). See [demo](https://github.com/sidevesh/snackbar-and-fab-demo) for example and instructions how to.
