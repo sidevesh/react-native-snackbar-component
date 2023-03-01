@@ -6,7 +6,7 @@ import {
   Animated,
   Easing,
 } from 'react-native';
-import { ViewPropTypes } from 'deprecated-react-native-prop-types';
+import { ViewPropTypes, TextPropTypes } from 'deprecated-react-native-prop-types';
 import { Touchable } from './src';
 
 /* Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations */
@@ -192,8 +192,8 @@ SnackbarComponent.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   autoHidingTime: PropTypes.number, // How long (in milliseconds) the snack bar will be hidden.
   containerStyle: ViewPropTypes.style,
-  messageStyle: Text.propTypes.style,
-  actionStyle: Text.propTypes.style,
+  messageStyle: TextPropTypes.style,
+  actionStyle: TextPropTypes.style,
 };
 
 const styles = StyleSheet.create({
