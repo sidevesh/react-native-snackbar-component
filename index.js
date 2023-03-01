@@ -5,8 +5,8 @@ import {
   Text,
   Animated,
   Easing,
-  ViewPropTypes,
 } from 'react-native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import { Touchable } from './src';
 
 /* Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations */

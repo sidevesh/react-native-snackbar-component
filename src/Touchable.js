@@ -4,8 +4,8 @@ import {
   View,
   TouchableOpacity,
   TouchableNativeFeedback,
-  ViewPropTypes,
 } from 'react-native';
+import { ViewPropTypes } from 'deprecated-react-native-prop-types';
 import {
   IS_ANDROID,
   IS_LT_LOLLIPOP,
