@@ -184,10 +184,10 @@ SnackbarComponent.propTypes = {
   left: PropTypes.number,
   right: PropTypes.number,
   top: PropTypes.number,
-  bottom: PropTypes.number,
+  bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.instanceOf(Animated.Value)]),
   visible: PropTypes.bool,
   actionText: PropTypes.string,
-  textMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  textMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   position: PropTypes.oneOf(['bottom', 'top']), // bottom (default), top
   // eslint-disable-next-line react/no-unused-prop-types
   autoHidingTime: PropTypes.number, // How long (in milliseconds) the snack bar will be hidden.
